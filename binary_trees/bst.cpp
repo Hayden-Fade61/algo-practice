@@ -1,63 +1,46 @@
 #include <iostream>
-#include <vector>
 
-// typedef struct node {
-//     int val;
-// } node_t;
-
-class binarySearchTree{
-    private:
+class bst{
+    typedef struct node {
         int val;
-        binarySearchTree* left;
-        binarySearchTree* right;
+        node* left;
+        node* right;
+        node(){
+            val = 0;
+            left = nullptr;
+            right = nullptr;
+        }
+        node(int data){
+            val = data;
+            left = nullptr;
+            right = nullptr;
+        }
+    } node_t;
 
+    private:
+        node_t* root;
+    
     public:
-        binarySearchTree(int val){
-            this->left = nullptr;
-            this->right = nullptr;
-            this->val = val;
+        bst(){
+            this -> root = nullptr;
         }
-        // insert, delete, and search
-        void insert(binarySearchTree* node){
-            bool isLeft = this->val < node->val;
-            bool isNull = isLeft ? 
-                this -> left == nullptr : 
-                this -> right == nullptr;
-            if(isLeft && isNull){
-                this -> left = node;
-            }
-            else if (isLeft && !isNull){
-                left->insert(node);
-            }
-            else if(!isLeft && isNull){
-                this -> right = node;
-            }
-            else if (!isLeft && !isNull){
-                right->insert(node);
-            }
+        bst (int data){
+            this -> root = new node(data);
         }
+        node_t* getRoot() {return this->root;}
 
-        void remove(int val){
-            binarySearchTree* node = this->search(val);
-            if(node !=nullptr){
-                // What the hell is this
-            }
-        }
+        // Insert / Delete / Find
+        void insert(int val);
+        void insert(node_t *newNode);
+        node_t* removeNode(int val);
 
-        binarySearchTree* search(int key){
-            // Check left child exists and matches
-            if(this->left != nullptr){
-                return  this->left->val == key ? 
-                    this->left :
-                    this->left->search(key);
-            } 
-            // Check right child exists and matches
-            else if(this->right != nullptr){
-                return  this->right->val == key ? 
-                    this->right :
-                    this->right->search(key);
-            }
-            // If neither exist, then return failure
-            return nullptr;
-        }
+        // Find min/max
+        node_t* find(int val);
+        node_t *findMin(node_t *root);
+        node_t *findMax(node_t *root);
+
+        // Traversal methods
+        void inorderTraversal(node_t *root);
+        void preorderTraversal(node_t *root);
+        void postorderTraversal(node_t *root);
 };
