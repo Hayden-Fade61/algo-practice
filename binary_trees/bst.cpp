@@ -31,16 +31,49 @@ class bst{
 
         // Insert / Delete / Find
         void insert(int val);
-        void insert(node_t *newNode);
+        void insert(node_t* newNode);
         node_t* removeNode(int val);
 
-        // Find min/max
-        node_t* find(int val);
-        node_t *findMin(node_t *root);
-        node_t *findMax(node_t *root);
+        // Find methods
+        node_t* find(node_t* root, int key){
+            if(root == nullptr) return nullptr;
+            if(root -> val == key) return root;
+            else if(key > root -> val) return find(root->right, key);
+            else return find(root->left, key);          
+        }
+
+        node_t* findMin(node_t* root){
+            if(root->left == nullptr) return root;
+            findMin(root->left);
+        }
+
+        node_t* findMax(node_t* root){
+            if(root->right == nullptr) return root;
+            findMax(root->right);
+        }
 
         // Traversal methods
-        void inorderTraversal(node_t *root);
-        void preorderTraversal(node_t *root);
-        void postorderTraversal(node_t *root);
+        void inorderTraversal(node_t* root){
+            if (root != nullptr){
+                inorderTraversal(root->left);
+                std::cout << root << std::endl;
+                inorderTraversal(root->right);
+            }
+        }
+
+        void preorderTraversal(node_t* root){
+            if (root != nullptr){
+                std::cout << root << std::endl;
+                inorderTraversal(root->left);
+                inorderTraversal(root->right);
+            }
+        }
+
+        void postorderTraversal(node_t* root){
+            if (root != nullptr){
+                    inorderTraversal(root->left);
+                    inorderTraversal(root->right);
+                    std::cout << root << std::endl;
+                }
+        }
 };
