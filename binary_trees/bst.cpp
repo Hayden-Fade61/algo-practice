@@ -29,10 +29,18 @@ class bst{
         }
         node_t* getRoot() {return this->root;}
 
-        // Insert / Delete / Find
-        void insert(int val);
-        void insert(node_t* newNode);
-        node_t* removeNode(int val);
+        // Insert / Delete 
+        void insert(node_t* root, int newVal){
+            bool goLeft = root -> val <= newVal;
+            if (goLeft && root->left == nullptr) root->left = new node(newVal); 
+            else if (goLeft && root->left != nullptr) insert(root->left, newVal); 
+            else if (!goLeft && root->right == nullptr) root->right = new node(newVal); 
+            else insert(root->right, newVal); 
+        }
+
+        node_t* remove(node_t *root, int key){
+            
+        }
 
         // Find methods
         node_t* find(node_t* root, int key){
