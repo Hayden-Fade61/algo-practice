@@ -31,7 +31,7 @@ class bst{
 
         // Insert / Delete 
         void insert(node_t* root, int newVal){
-            if (root -> val == newVal) return;
+            if (root -> val == newVal) return; // No duplicates
             bool goLeft = root -> val < newVal;
             if (goLeft && root -> left == nullptr) root -> left = new node(newVal); 
             else if (goLeft && root -> left != nullptr) insert(root -> left, newVal); 
@@ -42,6 +42,7 @@ class bst{
         node_t* remove(node_t *root, int key){
             node_t* toDelete = root;
             node_t* parent = nullptr;
+            bool isLeft = false;
             // Find value if it exists in the tree
             while(toDelete -> val != key && toDelete != nullptr){
                 if (toDelete -> val < key){
@@ -65,10 +66,18 @@ class bst{
                 else parent->right = child;
                 return toDelete;
             }
-            // 2 children
+            // 2 children, replace with inorder successor
             else{
-                
-            }
+                node_t* successor = findMax(toDelete->left);
+                successor->left = toDelete->left; 
+                successor->right = toDelete->right;
+                if(parent->val < successor->val){
+                    parent->right = successor;
+                }
+                else{
+                    parent->left = successor;
+                }
+            }  
         }
 
         // Find methods
