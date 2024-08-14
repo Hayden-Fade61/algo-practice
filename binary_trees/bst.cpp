@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-class bst{
+class BST{
     typedef struct node {
         int val;
         node* left;
@@ -19,25 +19,25 @@ class bst{
     } node_t;
 
     private:
-        node_t* root;
+        node_t *mpRoot;
     
     public:
-        bst(){
-            this -> root = nullptr;
+        BST(){
+            this -> mpRoot = nullptr;
         }
-        bst (int data){
-            this  ->  root = new node(data);
+        BST(int data){
+            this  ->  mpRoot = new node(data);
         }
 
-        bst (std::vector<int> dataList){
+        BST(std::vector<int> dataList){
             int listLength = dataList.size();
-            this -> root = listLength > 0 ? new node(dataList[0]) : nullptr;
+            this -> mpRoot = listLength > 0 ? new node(dataList[0]) : nullptr;
             for(int i = 1; i < listLength; i++){
-                insert(root, dataList[i]);
+                insert(mpRoot, dataList[i]);
             }
         }
 
-        node_t* getRoot() {return this -> root;}
+        node_t* getRoot() {return this -> mpRoot;}
 
         // Insert / Delete 
         void insert(node_t* root, int newVal){
@@ -109,26 +109,26 @@ class bst{
         }
 
         // Traversal methods
-        void inorderTraversal(node_t* root){
+        void traverseInorder(node_t* root){
             if (root != nullptr){
-                inorderTraversal(root -> left);
+                traverseInorder(root -> left);
                 std::cout << root << std::endl;
-                inorderTraversal(root -> right);
+                traverseInorder(root -> right);
             }
         }
 
-        void preorderTraversal(node_t* root){
+        void traversePreorder(node_t* root){
             if (root != nullptr){
                 std::cout << root << std::endl;
-                inorderTraversal(root -> left);
-                inorderTraversal(root -> right);
+                traverseInorder(root -> left);
+                traverseInorder(root -> right);
             }
         }
 
-        void postorderTraversal(node_t* root){
+        void traversePostorder(node_t* root){
             if (root != nullptr){
-                    inorderTraversal(root -> left);
-                    inorderTraversal(root -> right);
+                    traverseInorder(root -> left);
+                    traverseInorder(root -> right);
                     std::cout << root << std::endl;
                 }
         }
