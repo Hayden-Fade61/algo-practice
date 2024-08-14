@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 class bst{
     typedef struct node {
@@ -27,6 +28,15 @@ class bst{
         bst (int data){
             this  ->  root = new node(data);
         }
+
+        bst (std::vector<int> dataList){
+            int listLength = dataList.size();
+            this -> root = listLength > 0 ? new node(dataList[0]) : nullptr;
+            for(int i = 1; i < listLength; i++){
+                insert(root, dataList[i]);
+            }
+        }
+
         node_t* getRoot() {return this -> root;}
 
         // Insert / Delete 
