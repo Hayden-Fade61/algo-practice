@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-class BST{
+class BinaryTree{
     typedef struct node {
         int val;
         node* left;
@@ -22,14 +22,14 @@ class BST{
         node_t *mpRoot;
     
     public:
-        BST(){
+        BinaryTree(){
             this -> mpRoot = nullptr;
         }
-        BST(int data){
+        BinaryTree(int data){
             this  ->  mpRoot = new node(data);
         }
 
-        BST(std::vector<int> dataList){
+        BinaryTree(std::vector<int> dataList){
             int listLength = dataList.size();
             this -> mpRoot = listLength > 0 ? new node(dataList[0]) : nullptr;
             for(int i = 1; i < listLength; i++){
