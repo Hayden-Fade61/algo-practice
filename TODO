@@ -2,3 +2,13 @@ LEARN CMAKE
 
 Setup up unit testing googletest or catch2
 
+Things to test:
+    1. BST
+    2. Min and max heaps
+
+Things to implement:
+    1. Basic queue
+    2. Stack
+    3. Priority Queues
+    4. AVL trees
+    5. Graph framework
