@@ -53,7 +53,16 @@ class Heap {
         }
 
         // Abstract functions
-        virtual int extractRoot() = 0;
-
         virtual void insert(int key) = 0;
+
+        // Concrete functions
+        int extractRoot(){
+            // Retrieve root and make last element root
+            int root = this->data[0];
+            swap(this->data.size() - 1, 0);
+            this->data.pop_back(); // Don't forget to shrink the heap
+            // Rebuild the heap
+            heapify(0);
+            return root;
+        }
 };
