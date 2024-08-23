@@ -26,16 +26,6 @@ class MaxHeap : public Heap{
     public:
         MaxHeap(std::vector<int> data) : Heap(data){};
 
-        int extractRoot(){
-            // Retrieve root and make last element root
-            int root = this->data[0];
-            swap(this->data.size() - 1, 0);
-            this->data.pop_back(); // Don't forget to shrink the heap
-            // Rebuild the heap
-            heapify(0);
-            return root;
-        }
-
         void insert(int key){
             // Add new element to the end
             this->data.push_back(key);
