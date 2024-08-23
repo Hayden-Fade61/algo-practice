@@ -32,7 +32,7 @@ class MinHeap : public Heap{
              int newKeyIndex = this->data.size();
             int parentIndex = getParentIndex(newKeyIndex);  
             // Compare parent to new key and swap to maintain heap
-            while(this->data[parentIndex] < key && newKeyIndex > 0){
+            while(this->data[parentIndex] > key && newKeyIndex > 0){
                 swap(parentIndex, newKeyIndex);
                 newKeyIndex = parentIndex;
                 parentIndex = getParentIndex(newKeyIndex);
